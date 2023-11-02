@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Epic Shopping List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Mooli&family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-size: 2rem;
+        margin: 10%;
+        font-family: 'Red Hat Display', sans-serif;
+        background-color: rgb(235, 214, 214);
+      }
+      h1 {
+        font-weight: 800;
+      }
+      h2 {
+        font-weight: 100;
+      }
+      h1, h2 {
+        font-family: 'Comfortaa', sans-serif;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      li button {
+        font-size: 10px;
+        margin-left: 20px;
+        padding: 5px;
+        color: white;
+        background-color: #ec596c;
+        border: 2px solid black;
+        border-radius: 25px;
+        font-family: 'Red Hat Display', sans-serif;
+      }
+      li button:hover {
+        color: #ffffff;
+        background-color: rgb(112, 29, 47);
+        border: 2px solid black;
+        border-radius: 25px;
+      }
+      input {
+        padding: 5px;
+        border-radius: 25px;
+        border: 2px solid black;
+        font-family: 'Red Hat Display', sans-serif;
+      }
+      #addBtn {
+        background-color: #ec596c;
+        color: white;
+      }
+      #addBtn:hover {
+        background-color: #61141e;
+        color: rgb(255, 255, 255);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+        <h1>My Epic Shopping List</h1>
+        <h2>By Sassy Toast</h2>
+    </header>
+    <section class="form">
+        <!-- Create an html form that will take in a new list item -->
+        <form id="addToList">
+            <!-- Create the input for user to add text -->
+        <label for="item">Enter a new item:</label>
+        <input type="text" name="item" id="item" placeholder="Add an item..."/>
+
+        <!-- Create the submit button -->
+        <input type="submit" id="addBtn" value="Add item">
+    </form>
+
+    </section>
+
+    <ul id="list">
+        <!-- <li>
+            <span>item</span>
+            <button>Remove item</button>
+        </li> -->
+    </ul>
+
+    <script>
+
+        // Look for what a user types
+
+        const list = document.querySelector('#list');
+        const form = document.querySelector('#addToList');
+        const input = document.querySelector('#item');
+
+        // Watch the form for submision, prevent the form from doing it's default action
+
+        form.addEventListener('submit', function(event) {
+
+        // Prevent the form from default submit action
+
+        event.preventDefault();
+
+        // Take the value the user entered from the input
+
+        const shoppingValue = input.value;
+
+        // Create an element for the new list item
+
+        const newListItem = document.createElement('li');
+
+        // Create the <span> inside the list item
+
+        const newSpan = document.createElement('span');
+
+        // Add the text content to the new span
+
+        newSpan.textContent = shoppingValue;
+
+        // Append the new span to our new <li>
+
+        newListItem.appendChild(newSpan);
+
+        // Create the remove button
+
+        const removeButton = document.createElement('button');
+
+        // Add the button text
+
+        removeButton.textContent = "Remove item";
+
+        // Append the button to the new <li>
+
+        newListItem.appendChild(removeButton);
+
+        // Create the remove button functionality
+
+        removeButton.addEventListener('click', function(event) {
+
+            // get the button
+
+            const btn = event.target;
+
+            // Get the button's parent <li>
+
+            const parent = btn.parentNode;
+
+            // Remove the parent <li>
+
+            parent.remove();
+
+        })
+
+        // append the button to the new <li>
+
+        newListItem.appendChild(removeButton);
+
+        // Append the <li> to our list
+
+        list.appendChild(newListItem);
+
+        // Clear the input and refocus on it
+
+        input.value = "";
+        input.focus();
+        })
+
+    </script>
+  </body>
+</html>
